@@ -2,11 +2,13 @@
 import express from 'express';
 import LivroController from '../controllers/livroController.js';
 
-const router = express.Router();
+const routes = express.Router();
 
-router.get('/livros/:id', LivroController.listarLivroPorId);
-router.put('/livros/:id', LivroController.atualizarLivro);
-router.post('/livros', LivroController.cadastrarLivro);
-router.delete('/livros/:id', LivroController.excluirLivro);
+routes.get("/livros", LivroController.listarLivros);
+routes.get("/livros/busca", LivroController.listarLivrosPorEditora);
+routes.get("/livros/:id", LivroController.listarLivroPorId);
+routes.post("/livros", LivroController.cadastrarLivro);
+routes.put("/livros/:id", LivroController.atualizarLivro);
+routes.delete("/livros/:id", LivroController.excluirLivro);
 
-export default router;
+export default routes;
