@@ -2,8 +2,10 @@
 import express from "express";
 import { conectaNaDatabase, fetchLivro } from "./config/dbConnect.js";
 import Livro from "./models/livro.js";  // Certifique-se de que o nome do arquivo e a importação correspondem
-
+import routes from "./routes/index.js";
 const app = express();
+routes(app);
+
 app.use(express.json());
 
 async function startApp() {
@@ -24,9 +26,6 @@ async function startApp() {
 
 startApp();
 
-app.get("/", (req, res) => {
-    res.status(200).send("Curso de Node.js");
-});
 app.get("/livros/:id", async (req, res) => {
     try {
         const livro = await Livro.findById(req.params.id);
