@@ -37,6 +37,15 @@ class LivroController {
         res.status(500).json({ message: `${erro.message} - falha ao cadastrar livro` });
       }
     }
+    static async excluirLivro (req, res) {
+      try {
+        const id = req.params.id;
+        await livro.findByIdAndDelete(id);
+        res.status(200).json({ message: "livro excluído com sucesso" });
+      } catch (erro) {
+        res.status(500).json({ message: `${erro.message} - falha na exclusão` });
+      }
+    };
 };
 
 export default LivroController;
